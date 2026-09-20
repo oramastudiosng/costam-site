@@ -3,7 +3,7 @@
 One static page for people sent a link to install CostAm, the Android app that
 works out what a batch of baking actually costs to make.
 
-Live: (add the Vercel URL once deployed)
+Live: <https://costam-green.vercel.app>
 
 ## What is here
 
@@ -11,38 +11,42 @@ Live: (add the Vercel URL once deployed)
 index.html        the whole page
 style.css         the whole stylesheet
 assets/           app icon, favicon, four screenshots
-vercel.json       content-type and cache headers for the APK
-costam.apk        the build people download  (NOT in git — see below)
+vercel.json       the /costam.apk redirect, and cache headers
+.vercelignore     keeps internal docs out of the deployment
 ```
 
 No framework, no build step, no npm dependencies. Fonts come from Google Fonts;
-nothing else is fetched from outside. The page is about 172 KB excluding the APK.
+nothing else is fetched from outside. The whole page is about 172 KB.
 
-## The APK is deliberately not in this repository
+## Where the download actually comes from
 
-The current build is **111,455,364 bytes (106 MiB)**, which is over GitHub's hard
-100 MiB per-file limit — a push containing it is rejected outright. So `costam.apk`
-is listed in `.gitignore` and uploaded as part of the Vercel deployment instead.
+The current build is **111,455,364 bytes (106 MiB)**. That is over two hard limits:
 
-**This means a Git-integration deploy would ship the site without the download.**
-Deploy from a local folder that has the APK in it:
+- GitHub rejects any file over 100 MiB in a push, so `costam.apk` is in `.gitignore`
+- Vercel rejects any deployment file over 100 MB, so it cannot be a static asset either
+
+So the APK is published as a **release asset** on this repository, and `vercel.json`
+redirects the fixed path `/costam.apk` to it. The page still links to `/costam.apk`
+and always will; only the redirect target changes between versions. GitHub serves
+release assets with `Content-Disposition: attachment` and the correct
+`application/vnd.android.package-archive` type, with no sign-in wall.
+
+To publish a new build:
 
 ```bash
-vercel --prod
-```
-
-To refresh the APK after a new build:
-
-```bash
-eas build:list --platform android          # confirm package + version first
+eas build:list --platform android        # confirm package + version FIRST
 curl -L -o costam.apk "<artifact url>"
+gh release create vX.Y.Z costam.apk --repo oramastudiosng/costam-site
 ```
 
-Then update three things by hand and redeploy:
+Then update by hand and redeploy with `vercel --prod`:
 
+- the `destination` in `vercel.json` (point it at the new tag)
 - the file size in install step 1 of `index.html`
 - the version and date in the footer of `index.html`
-- `filename` in the `Content-Disposition` header in `vercel.json`
+
+If a future build comes in under 100 MB, drop the redirect and let the file sit in
+the repo root — Vercel will serve it directly, which is what the brief wanted.
 
 ## Current build
 

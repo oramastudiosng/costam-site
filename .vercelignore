@@ -1,20 +1,26 @@
-# NOTE: without this file the Vercel CLI falls back to .gitignore, which
-# excludes costam.apk — the one file the whole page exists to hand over.
-# costam.apk is deliberately NOT listed here.
+# Patterns here are anchored with a leading slash on purpose. A bare name like
+# "icon.png" also matches "assets/icon.png", which silently dropped every image
+# from a deployment once already.
 
-.git
-.gitignore
-README.md
-COSTAM_SITE.md
-ICONS.md
+# The APK is not deployed: at 106 MiB it exceeds Vercel's 100 MB per-file limit,
+# so it is published as a GitHub release asset and vercel.json redirects
+# /costam.apk to it. See README.
+/costam.apk
 
-# unoptimised source renders; assets/ holds the copies the site serves
-01-ingredients.png
-02-add.png
-03-recipe.png
-04-breakdown.png
-icon.png
-favicon.png
-icon-512.png
-adaptive-icon.png
-splash-icon.png
+/.git
+/.gitignore
+/README.md
+/COSTAM_SITE.md
+/ICONS.md
+
+# Unoptimised source renders kept at the project root.
+# The copies the site actually serves live in assets/ and MUST ship.
+/01-ingredients.png
+/02-add.png
+/03-recipe.png
+/04-breakdown.png
+/icon.png
+/favicon.png
+/icon-512.png
+/adaptive-icon.png
+/splash-icon.png
