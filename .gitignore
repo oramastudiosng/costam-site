@@ -1,0 +1,21 @@
+# Internal documents — these belong with the app, not in the public site repo
+/COSTAM_SITE.md
+/ICONS.md
+
+# Source renders kept at the project root.
+# The optimised copies that the site actually serves live in assets/ and ARE tracked.
+/01-ingredients.png
+/02-add.png
+/03-recipe.png
+/04-breakdown.png
+/icon.png
+/favicon.png
+/icon-512.png
+/adaptive-icon.png
+/splash-icon.png
+
+# The build itself: 106 MiB, over GitHub's 100 MiB per-file limit.
+# Uploaded straight to Vercel instead. See README.
+/costam.apk
+
+.vercel/
