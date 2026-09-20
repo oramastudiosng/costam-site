@@ -1,0 +1,20 @@
+# NOTE: without this file the Vercel CLI falls back to .gitignore, which
+# excludes costam.apk — the one file the whole page exists to hand over.
+# costam.apk is deliberately NOT listed here.
+
+.git
+.gitignore
+README.md
+COSTAM_SITE.md
+ICONS.md
+
+# unoptimised source renders; assets/ holds the copies the site serves
+01-ingredients.png
+02-add.png
+03-recipe.png
+04-breakdown.png
+icon.png
+favicon.png
+icon-512.png
+adaptive-icon.png
+splash-icon.png
