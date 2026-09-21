@@ -51,19 +51,19 @@ Then update by hand and redeploy:
 Vercel rejects any deployment file over 100 MB and GitHub rejects any pushed file
 over 100 MiB. The 2.0.0 build was 106 MiB and hit both, and was served through a
 GitHub release asset with a redirect in `vercel.json` (see the `v2.0.0` release,
-kept for history). 2.1.0 is ARM-only and fits, so the redirect is gone. The real
+kept for history). 2.1.0 onwards is ARM-only and fits, so the redirect is gone. The real
 fix is keeping the build ARM-only rather than reinstating the workaround.
 
 ## Current build
 
 | | |
 |---|---|
-| Version | 2.1.0 (versionCode 2) |
+| Version | 2.3.0 (versionCode 4) |
 | Package | `com.orama.costam` |
-| Size | 61,820,884 bytes / 59 MiB |
+| Size | 61,824,956 bytes / 59 MiB |
 | ABIs | `arm64-v8a`, `armeabi-v7a` (no x86 — that is what halved it) |
 | Expo project | `@oramastudiosngltd/costam` |
-| Build ID | `d1b7e2c9-bae8-45a9-b8cc-caa80e5844bf` |
+| Build ID | `2aa1a53c-c2be-4f17-b9e9-7faa1a851754` |
 | Signing | APK Signature Scheme v2 |
 
 ## No tracking

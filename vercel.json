@@ -5,7 +5,7 @@
       "source": "/costam.apk",
       "headers": [
         { "key": "Content-Type", "value": "application/vnd.android.package-archive" },
-        { "key": "Content-Disposition", "value": "attachment; filename=\"costam-2.1.0.apk\"" },
+        { "key": "Content-Disposition", "value": "attachment; filename=\"costam-2.3.0.apk\"" },
         { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     },
