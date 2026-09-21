@@ -1,11 +1,12 @@
 # Patterns here are anchored with a leading slash on purpose. A bare name like
 # "icon.png" also matches "assets/icon.png", which silently dropped every image
 # from a deployment once already.
-
-# The APK is not deployed: at 106 MiB it exceeds Vercel's 100 MB per-file limit,
-# so it is published as a GitHub release asset and vercel.json redirects
-# /costam.apk to it. See README.
-/costam.apk
+#
+# costam.apk is deliberately NOT listed. Since 2.1.0 it is ARM-only and fits
+# under Vercel's 100 MB per-file limit, so it ships in the deployment and is
+# served straight from /costam.apk. It is gitignored, so the deploy has to run
+# from a working folder that has the file — a Git-integration deploy would ship
+# the site without the download.
 
 /.git
 /.gitignore

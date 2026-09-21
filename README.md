@@ -18,50 +18,53 @@ vercel.json       the /costam.apk redirect, and cache headers
 No framework, no build step, no npm dependencies. Fonts come from Google Fonts;
 nothing else is fetched from outside. The whole page is about 172 KB.
 
-## Where the download actually comes from
+## Where the download comes from
 
-The current build is **111,455,364 bytes (106 MiB)**. That is over two hard limits:
+`costam.apk` is a plain static file in this folder, served straight from
+`/costam.apk`. It is **not in git**: binaries bloat a repo permanently and each
+release would add another ~59 MB, so `.gitignore` excludes it and `.vercelignore`
+deliberately does not.
 
-- GitHub rejects any file over 100 MiB in a push, so `costam.apk` is in `.gitignore`
-- Vercel rejects any deployment file over 100 MB, so it cannot be a static asset either
+**That means the deploy has to run from a working folder that has the APK in it.**
+A Git-integration deploy would ship the site without the download:
 
-So the APK is published as a **release asset** on this repository, and `vercel.json`
-redirects the fixed path `/costam.apk` to it. The page still links to `/costam.apk`
-and always will; only the redirect target changes between versions. GitHub serves
-release assets with `Content-Disposition: attachment` and the correct
-`application/vnd.android.package-archive` type, with no sign-in wall.
+```bash
+vercel --prod
+```
 
 To publish a new build:
 
 ```bash
-eas build:list --platform android        # confirm package + version FIRST
+eas build:list --platform android      # confirm package + version FIRST
 curl -L -o costam.apk "<artifact url>"
-gh release create vX.Y.Z costam.apk --repo oramastudiosng/costam-site
+unzip -l costam.apk | grep '^.*lib/'   # must be arm-only, no x86
 ```
 
-Then update by hand and redeploy with `vercel --prod`:
+Then update by hand and redeploy:
 
-- the `destination` in `vercel.json` (point it at the new tag)
 - the file size in install step 1 of `index.html`
-- the version and date in the footer of `index.html`
+- the version and date in the footer, and the `download` attribute on the button
+- the `Content-Disposition` filename in `vercel.json`
 
-If a future build comes in under 100 MB, drop the redirect and let the file sit in
-the repo root — Vercel will serve it directly, which is what the brief wanted.
+### If a build ever exceeds 100 MB again
+
+Vercel rejects any deployment file over 100 MB and GitHub rejects any pushed file
+over 100 MiB. The 2.0.0 build was 106 MiB and hit both, and was served through a
+GitHub release asset with a redirect in `vercel.json` (see the `v2.0.0` release,
+kept for history). 2.1.0 is ARM-only and fits, so the redirect is gone. The real
+fix is keeping the build ARM-only rather than reinstating the workaround.
 
 ## Current build
 
 | | |
 |---|---|
-| Version | 2.0.0 (versionCode 1) |
+| Version | 2.1.0 (versionCode 2) |
 | Package | `com.orama.costam` |
-| Size | 111,455,364 bytes / 106 MiB |
+| Size | 61,820,884 bytes / 59 MiB |
+| ABIs | `arm64-v8a`, `armeabi-v7a` (no x86 — that is what halved it) |
 | Expo project | `@oramastudiosngltd/costam` |
-| Build ID | `61255735-e399-4299-9f82-870016487b71` |
+| Build ID | `d1b7e2c9-bae8-45a9-b8cc-caa80e5844bf` |
 | Signing | APK Signature Scheme v2 |
-
-Nearly half that size is `x86` and `x86_64` native libraries (47 MiB), which only
-Android emulators use. A per-ABI build or an app bundle would cut the download
-roughly in half for real phones.
 
 ## No tracking
 
