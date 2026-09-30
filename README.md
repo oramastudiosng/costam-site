@@ -35,7 +35,7 @@ vercel --prod
 To publish a new build:
 
 ```bash
-eas build:list --platform android      # confirm package + version FIRST
+eas build:list --platform android      # confirm package + version + versionCode FIRST
 curl -L -o costam.apk "<artifact url>"
 unzip -l costam.apk | grep '^.*lib/'   # must be arm-only, no x86
 ```
@@ -58,12 +58,12 @@ fix is keeping the build ARM-only rather than reinstating the workaround.
 
 | | |
 |---|---|
-| Version | 2.3.0 (versionCode 4) |
+| Version | 2.4.0 (versionCode 6) |
 | Package | `com.orama.costam` |
-| Size | 61,824,956 bytes / 59 MiB |
+| Size | 61,828,684 bytes / 59 MiB |
 | ABIs | `arm64-v8a`, `armeabi-v7a` (no x86 — that is what halved it) |
 | Expo project | `@oramastudiosngltd/costam` |
-| Build ID | `2aa1a53c-c2be-4f17-b9e9-7faa1a851754` |
+| Build ID | `e75504f0-4f4f-42a9-863b-10541e82a80a` |
 | Signing | APK Signature Scheme v2 |
 
 ## No tracking
