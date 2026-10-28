@@ -14,9 +14,11 @@
 /adaptive-icon.png
 /splash-icon.png
 
-# The build itself: 106 MiB, over GitHub's 100 MiB per-file limit.
-# Uploaded straight to Vercel instead. See README.
+# APKs never go in git — they bloat the repo permanently at ~59 MB a release.
+# They are uploaded with the Vercel deployment instead. See README.
+# The glob matters: archived builds are named costam-<version>.apk.
 /costam.apk
+/costam-*.apk
 
 .vercel/
 
