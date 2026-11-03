@@ -329,3 +329,45 @@ footer .version { margin: 0; }
 
 .whatsnew li::marker { color: var(--accent); }
 .whatsnew li:last-child { margin-bottom: 0; }
+
+/* ---------- Version history ---------- */
+
+.whatsnew .more {
+  margin: 1rem 0 0;
+  font-size: 0.9375rem;
+}
+
+.history article {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.history article:last-child { border-bottom: 1px solid var(--hairline); }
+
+.history h3 {
+  font-size: 1.1875rem;
+  margin-bottom: 0.6rem;
+}
+
+.history h3 span {
+  font-family: Karla, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.history ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.history li {
+  margin-bottom: 0.4rem;
+  padding-left: 0.2rem;
+  color: var(--muted);
+}
+
+.history li::marker { color: var(--accent); }
+.history li:last-child { margin-bottom: 0; }
