@@ -58,19 +58,20 @@ fix is keeping the build ARM-only rather than reinstating the workaround.
 
 | | |
 |---|---|
-| Version | 2.7.1 (versionCode 11) |
+| Version | 2.9.0 (versionCode 13) |
 | Package | `com.orama.costam` |
-| Size | 61,882,076 bytes / 59 MiB |
+| Size | 62,173,627 bytes / 59.3 MiB |
 | ABIs | `arm64-v8a`, `armeabi-v7a` (no x86 — that is what halved it) |
 | Expo project | `@oramastudiosngltd/costam` |
-| Build ID | `01107fad-f638-439a-ba78-511b2c4d983f` |
+| Build ID | `3f296e05-8034-48af-9892-c45b3c0c347c` |
 | Signing | APK Signature Scheme v2 |
 
 ## Older builds
 
-`costam-2.4.0.apk` and `costam-2.5.1.apk` are still deployed and downloadable
-at those paths, but nothing on the page links to them. They are there so an
-existing tester can be pointed back at an earlier build if 2.7.1 misbehaves.
+`costam-2.4.0.apk`, `costam-2.5.1.apk` and `costam-2.7.1.apk` are still
+deployed and downloadable at those paths, but nothing on the page links to
+them. They are there so an existing tester can be pointed back at an earlier
+build if 2.9.0 misbehaves.
 
 ## No tracking
 
